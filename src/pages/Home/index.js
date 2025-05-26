@@ -34,6 +34,9 @@ export default function Home() {
       })
       .catch((error) => {
         console.error('Error fetching contacts:', error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [orderBy]);
 
@@ -47,7 +50,7 @@ export default function Home() {
 
   return (
     <Container>
-      {isLoading && <Loader />}
+      <Loader isLoading={isLoading} />
       <InputSearchContainer>
         <input value={searchTerm} type="text" placeholder="Pesquisar pelo nome..." onChange={handleChangeSearchTerm} />
       </InputSearchContainer>
